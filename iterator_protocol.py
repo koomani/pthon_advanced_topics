@@ -1,11 +1,13 @@
+import math
+
 '''
 Iterator: 
     # is an object that implements iterator protocol.
     # iterator protocol represents following methods:
         # __iter__ method that returns the object itself
-        # __next__ method that returns the next item
+        # __next__ method that returns the next item.
     # condition validation:
-        # If all the items have been returned, the method raises a StopIteration exception.
+        # If all the items have been returned, __next__ method raises a StopIteration exception.
     '''
 
 
@@ -23,7 +25,7 @@ class Square:
             raise StopIteration
 
         self.current += 1
-        return self.current ** 2
+        return int(math.pow(self.current, 2))
 
 
 square = Square(6)                           # an iterator
