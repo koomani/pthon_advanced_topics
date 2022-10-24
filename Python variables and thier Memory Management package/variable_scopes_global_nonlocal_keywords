@@ -1,0 +1,165 @@
+# variable scopes:
+	# object assignment to a variable
+		# variable references such object in the memory (reference NOT LABEL)
+		# accessing such object using the variable, is available but not everywhere in the code
+		# just in the lexical scope of the variable
+	# python stores the binding(name = variable, and the object) in the namespace. Every scope has its own namespace or scope
+
+	# Global scopes:
+		# is basically the module scope. The global scope spans a single Python source code file only
+		# Python doesn’t have a truly global scope that spans across all modules except for the built-in scope. (print, len, None, True, False, all python keywards,..etc)
+		#** That is why you can define anthing before or after calling or assigning, and it works fine. 
+	
+
+def increment(counter, by=1):
+    result = counter + by
+    return result
+	
+
+	
+	# Local scopes:
+		# during running code, Python carries two phases: Compilation and Execution
+		# when Python compiles the file, it adds the increment function to the global scope.
+		# In addition, python determines that the counter, by, and result variables inside the increment() function will be local to the increment() function.
+		# and Python will create the counter, by and result variables until the function is executed (called)
+		# Every time you call a function, Python creates a new scope. 
+			#Python also assigns the variables defined inside the function to that scope. And this scope is called a function local scope or local scope
+
+increment(10,2)
+
+	# Python creates a local scope for the increment() function call.
+	# Python creates local variables counter, by, and result in the local namespace and binds them to values 10, 2, and 12.
+	# When the function completes, Python will delete the local scope. And all the local variables such as counter, by, and result variables are out of scope.
+	# If you attempt to access these variables from outside the increment() function, you’ll get an error
+	# increment(100,3)  -> create new local namespace......etc
+	
+	#** When you run python script:(breifly)
+		#* compile file -> create global (variable, class, def) scope, nonlocal scope(free variables), and then local scope (variables, nested def)
+		#* execuation -> binds the vraibles and destroy local scopes.
+	
+# variable lookups
+	# in Python, scopes are nested. For example, local scopes are nested inside a module scope. And module scopes are nested inside the built-scope
+	# when you access an object bound to a variable, Python tries to find the object:
+		# in the current local scope first.
+		# and goes up the chain of enclosing scopes if Python doesn’t find the object in the current scope
+	#** Python has 4 scopes. Searching for object starts form local, nonlocal, global, and last python built-in global scope
+		
+	# global keyword:
+
+counter = 10
+
+
+def current():
+    print(counter)
+
+current()                   #10
+
+# Python search for name counter in the local function namespace(did not find), then search for it in the moulus global namespace (find it)
+# However, if you assign a value to a global variable from inside a function, Python will place that variable into the local namespace instead. For example
+
+counter = 10
+
+
+def reset():
+    counter = 0
+    print(counter)
+
+reset()                       #0
+print(counter)                #10
+
+# If you want to access(* update the assignment to be same as local) a global variable from inside a function, you can use the global keyword
+	# Using global keyward to replace counter in the modulus global namespace
+	
+counter = 10
+
+
+def reset():
+    global counter      # instructs Python that the counter variable (which now = 0) is bound to the global scope, not the local scope
+    counter = 0
+    print(counter) 
+
+reset()                      # 0
+print(counter)               # 0
+
+# Python nonlocal scopes
+	# in practice, you define nested functions when you don’t want these functions to be global
+	# you set that the user can access the inner() just by calling outer()
+	# ** All def are public (global namespace) by default except inner nested funn()
+
+
+def outer():                        
+    print('outer function')
+    def inner():                   # Nested function in outer()
+        print('inner function')
+    inner()
+
+outer()  
+
+'''
+outer function
+inner function
+'''      
+
+	# outer() and inner() have access to global and built in scopes and thier local scopes
+	# inner() has access to its enclosing scope => local scope for outer()
+	# So, from inner() perepective the local scope for outer() is global
+	# So, inner() enclosing scope neither local nor global => nonlocal scope
+
+
+def outer():
+    message = 'outer function'       # free variable
+    print(message)
+    def inner():
+        print(message)   # python looks for message in its local scope(not found) -> starts to look for it at the enclosing scope which outer()
+    inner()
+
+outer()
+
+'''
+outer function         
+outer function
+'''      
+
+message = 'global scope'
+
+
+def outer():
+    def inner():
+        print(message)
+    inner()
+	
+outer()                         
+
+'''
+global scope
+'''      
+
+def outer():
+    message = 'outer scope'                  #  free variable
+    print(message)
+    def inner():
+        nonlocal message                # nonlocal keyword to explicitly instruct Python that we’re modifying a nonlocal variable.
+        message = 'inner scope'
+        print(message)
+    inner()
+    print(message)
+
+outer()
+
+'''
+outer scope
+inner scope
+inner scope
+'''    
+
+
+message = 'outer scope'
+def outer():
+    print(message)
+    def inner():
+        #nonlocal message
+        message = 'inner scope'      # there is no free variable
+        print(message)
+    inner()
+    print(message)
+outer()                            #SyntaxError: no binding for nonlocal 'message' found # because there is no declared message in the nonlocal scope to override it
