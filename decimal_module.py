@@ -1,10 +1,9 @@
 from decimal import Decimal
 import decimal
 
-#Decimal module
-	# module that provides support for fast correctly-rounded decimal floating-point arithmetic
-	# Many decimal numbers don’t have exact representations in binary floating-point such as 0.1.
-	# When using these numbers in arithmetic operations, you’ll get a result that you would not expect. For example:
+# module that provides support for fast correctly-rounded decimal floating-point arithmetic
+# Many decimal numbers don’t have exact representations in binary floating-point such as 0.1.
+# When using these numbers in arithmetic operations, you’ll get a result that you would not expect. For example:
 
 x, y, z = 0.1, 0.1, 0.1
 s = x + y + z
@@ -83,4 +82,4 @@ print(Decimal((0, (0,1), -1)))      # 0.1
 	#Decimal class provides some mathematical operations such as sqrt and log. However, 
 		#it doesn’t have all the functions defined in the math module.
     #When you use functions from the math module for decimal numbers, Python will cast the Decimal objects to floats 
-		# before carrying arithmetic operations. This results in losing the precision built in the decimal objects.
+		# before carrying arithmetic operations. This results in losing the precision built in the decimal objects
