@@ -14,8 +14,7 @@ print(float(1))                 # 1.0
 # If the __float__() is not defined, it’ll fall back to __index__()
 # If you don’t pass any argument to the float(), it’ll return 0.0
 
-print(float())                 # 0.0
-
+print(float())                  # 0.0
 print(float(0.1))               # 0.1
 # Internally, Python can only represent 0.1 approximately.
 # To see how Python represents the 0.1 internally, you can use the format() function.
