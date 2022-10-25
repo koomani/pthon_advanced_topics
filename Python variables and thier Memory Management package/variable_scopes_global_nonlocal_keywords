@@ -8,14 +8,12 @@
 	# Global scopes:
 		# is basically the module scope. The global scope spans a single Python source code file only
 		# Python doesn’t have a truly global scope that spans across all modules except for the built-in scope. (print, len, None, True, False, all python keywards,..etc)
-		#** That is why you can define anthing before or after calling or assigning, and it works fine. 
+		# ** That is why you can define anthing before or after calling or assigning, and it works fine. 
 	
 
 def increment(counter, by=1):
     result = counter + by
     return result
-	
-
 	
 	# Local scopes:
 		# during running code, Python carries two phases: Compilation and Execution
@@ -33,9 +31,9 @@ increment(10,2)
 	# If you attempt to access these variables from outside the increment() function, you’ll get an error
 	# increment(100,3)  -> create new local namespace......etc
 	
-	#** When you run python script:(breifly)
-		#* compile file -> create global (variable, class, def) scope, nonlocal scope(free variables), and then local scope (variables, nested def)
-		#* execuation -> binds the vraibles and destroy local scopes.
+	# ** When you run python script:(breifly)
+		# * compile file -> create global (variable, class, def) scope, nonlocal scope(free variables), and then local scope (variables, nested def)
+		# * execuation -> binds the vraibles and destroy local scopes.
 	
 # variable lookups
 	# in Python, scopes are nested. For example, local scopes are nested inside a module scope. And module scopes are nested inside the built-scope

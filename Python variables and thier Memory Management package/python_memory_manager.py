@@ -3,9 +3,9 @@ import ctypes
 
 
 # Python garbage collection (Python Memory Manager):
-	# interacting with the garbage collector via the BUILT_IN gc MODULE.
-	# in Python, you don’t have to manage the memory yourself because Python does it for you automatically by the garbage collection
-	# python Memory Manager keeps track of references of objects. The Memory Manager destroys the object and reclaims the memory once the reference count of that object reaches 0.
+	# interacting with arbage collector via BUILT_IN gc MODULE.
+	# in Python, no need to manage the memory yourself because Python does it for you automatically by the gc
+	# python Memory Manager keeps track of references of objects, which destroys the object and reclaims the memory once the reference count of that object reaches 0.
 	# sometimes, reference counting doesn’t work as expected
 		# for example, (1)when you have an object that references itself (2) two objects reference each other.
 		# this creates CIRCUILAR REFERNCES.
@@ -37,7 +37,7 @@ class B:
         print(f'B: {hex(id(self))}, A: {hex(id(self.a))}')
 
 
-gc.disable()                                       # For testing purpose otherwise the Gc is fixed such issue
+gc.disable()                                       # for testing purpose otherwise the gc automatically fixes such issue
 
 a = A()                                            # isntance a creates b objects which automaticlly creates a object
 '''

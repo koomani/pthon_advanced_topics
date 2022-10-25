@@ -1,12 +1,12 @@
-# Mutable and immuable (fixed memory capacity) in Python
-	# mutable object (list, set, dic) = object whose internal state can be changed and versa verse for
-	# immutable (numbers(int, float),bool , string, tuple, frozen set)
+# Mutable and immuable (fixed /flexible memory capacity)
+	# mutable object (list, set, dic) = object whose internal state can be changed and versa verse for (flexible memory capacity)
+	# immutable (numbers(int, float),bool , string, tuple, frozen set) (fixed memory capacity)
 	# user-defined classes can be mutable or immutable, depending on whether their internal state can be changed or no (private, public, protected ? )
 	
 counter = 100
 print(id(counter))   # 1721946896
 counter =200					    # Python creates a new integer object with the value 200 and reassigns the counter variable
-print(id(counter))   # 1721950096   #The reassignment doesn’t change the value of the first integer object. It just reassigns the reference					            
+print(id(counter))   # 1721950096   # the reassignment doesn’t change the value of the first integer object. It just reassigns the reference					            
 print(id(100))       # 1721946896   # 100 object still not None in memory (count is just referencence not LABEL)
 
 # immutable objects are not something frozen or absolutely constant
