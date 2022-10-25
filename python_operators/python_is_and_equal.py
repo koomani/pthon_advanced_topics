@@ -1,14 +1,14 @@
 # Identity "is" operator
-	# is operator compares two variables and returns True if they reference the same object BECAUSE
-	# is operator compares the identity of two variables (id memory address)
-	# is operator to check if a and b reference the same object
-	# is about memory object but == about value object
+	# compares two variables and returns True if they reference the same object BECAUSE
+	# compares the identity of two variables (id memory address)
+	# to check if a and b reference the same object
+	# "is" about memory object but "==" about value object
 	# (id memory => identity operator is)
+	# to negate the is operator, you use the "is not" operator
 
 a = 100
 b = a
 print(a is b)                         # True
-
 a = 100
 b = 100                               # multi_reference object
 print(a is b)                         # True
@@ -18,12 +18,13 @@ print(a is b)                         # True
 	
 ranks = [1, 2, 3]
 rates = [1, 2, 3]
-print(ranks is rates)                 # False
+print(ranks is rates)                     # False
+print(ranks is not rates)                 # True
 
 
 # Equality operator (==)
 	# compares two variables for equality and returns True if they are equal
-	# to negate the is operator, you use the not operator
+	# to negate the is operator, you use the "!=" operator
 
 a = 100
 b = a
@@ -34,7 +35,4 @@ ranks = [1, 2, 3]
 rates = [1, 2, 3]
 print(ranks is rates)                 # False
 print(ranks == rates)                 # True
-
-ranks = [1, 2, 3]
-rates = [1, 2, 3]
-print(ranks is not rates)                 # True
+print(ranks != rates)                 # False
