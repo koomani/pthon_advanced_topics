@@ -36,9 +36,7 @@ print(round(x, 3) == round(y, 3))               # True # The Solution: by roundi
 print(isclose(x, y))                            #True
 
 # Convert Float to Int - math module for converting from a float to an int, including:
-        # Truncation
-        # Floor
-        # ceiling
+    # Truncation, Floor, Ceiling
 
 print(trunc(12.2))                 #12
 print(trunc(12.5))                 #12
